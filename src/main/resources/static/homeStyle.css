@@ -1,0 +1,229 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: lightgray;
+
+}
+.html{
+ background-color: lightgray;
+ }
+.images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.images img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.SiteTitle {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HomeBar {
+  background-color: lightgray;
+  height: 5vh;
+}
+.SpecificBook{
+    min-height: 20vh;
+    padding: 0vh 0vh 0vh 10%;
+    margin: 1%
+
+
+
+}
+.ImageNdInfo {
+  display: flex;
+  flex-wrap: row;
+  flex: 1;
+
+}
+
+.Info {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.images {
+
+  width: 12%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15em;
+}
+
+.images img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.titles {
+  width: 88%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+
+}
+
+.intro {
+
+  width: 80%;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.ratings {
+
+  width: 85.5%;
+  height: 5%;
+  display: flex;
+  align-items: : center;
+  justify-content: center;
+}
+
+.HomeBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  padding: 5px 10px;
+}
+.filters{
+margin-right: 10%;
+}
+
+.SortByButton {
+  background-color: transparent;
+    border: solid,black;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0 10px;
+}
+.SortByButton:hover{
+background-color: #777;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.SortByButton-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.SortByButton-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.SortByButton-dropdown-content a:hover {
+background-color: #777;
+}
+
+.dropdown:hover .SortByButton-dropdown-content {
+display: block;
+}
+
+
+@media screen and (max-width: 768px) {
+  .FilterForm {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.FilterByButton {
+  background-color: transparent;
+  border: solid,black;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 10px;
+}
+.FilterByButton:hover{
+background-color: #777;
+}
+
+
+.FilterByButton-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.FilterByButton-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.FilterByButton-dropdown-content a:hover {
+background-color: #777;
+}
+
+.dropdown:hover .FilterByButton-dropdown-content {
+display: block;
+}
+
+.column {
+  float: left;
+  width: max;
+  padding: 10px;
+  display: flex;
+}
+
+
+
+
+#pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+}
+
+.pagination li {
+  margin: 0 10px;
+  list-style: none;
+}
+

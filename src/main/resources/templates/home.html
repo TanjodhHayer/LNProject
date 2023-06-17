@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class= "html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/homeStyle.css">
+    <title>NovelNexus</title>
+</head>
+<body>
+<div class="Main">
+    <div class="SiteTitle">
+        <h1 class="NovelNexus"><a href="/">NovelNexus</a></h1>
+    </div>
+    <div class="HomeBar">
+        <div class="filters">
+            <div class="dropdown">
+                <button class="SortByButton">
+                    Sort By Novel List
+                </button>
+                <div class="SortByButton-dropdown-content">
+                    <a href="/rated?page=1">Top Rated</a>
+                    <a href="/complete?page=1">Completed</a>
+                    <a href="/ongoing?page=1">Ongoing</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="FilterByButton">
+                    Filter By Genre
+                </button>
+                <div class="FilterByButton-dropdown-content">
+                    <div class="column">
+                        <a href="/genre?genre=Action&page=1" th:onclick="'|javascript:selectedGenre = \'' + 'Action' + '\';|'">Action</a>
+                        <a href="/genre?genre=Adventure&page=1" th:onclick="'|javascript:selectedGenre = \'' + 'Adventure' + '\';|'">Adventure</a>
+                        <a href="/genre?genre=Comedy&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Comedy' + '\';|'">Comedy</a>
+                        <a href="/genre?genre=Drama&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Drama' + '\';|'">Drama</a>
+                        <a href="/genre?genre=Fantasy&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Fantasy' + '\';|'">Fantasy</a>
+                    </div>
+                    <div class="column">
+                        <a href="/genre?genre=Gender bender&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Gender bender' + '\';|'">Gender bender</a>
+                        <a href="/genre?genre=Harem&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Harem' + '\';|'">Harem</a>
+                        <a href="/genre?genre=Historical&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Historical' + '\';|'">Historical</a>
+                        <a href="/genre?genre=Josei&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Josei' + '\';|'">Josei</a>
+                        <a href="/genre?genre=Martial arts&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Martial arts' + '\';|'">Martial arts</a>
+                    </div>
+                    <div class="column">
+                        <a href="/genre?genre=Mature&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Mature' + '\';|'">Mature</a>
+                        <a href="/genre?genre=Mystery&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Mystery' + '\';|'">Mystery</a>
+                        <a href="/genre?genre=Psychological&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Psychological' + '\';|'">Psychological</a>
+                        <a href="/genre?genre=Reincarnation&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Reincarnation' + '\';|'">Reincarnation</a>
+                        <a href="/genre?genre=Romance&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Romance' + '\';|'">Romance</a>
+                    </div>
+                    <div class="column">
+                        <a href="/genre?genre=Slice of life&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Slice of life' + '\';|'">Slice of life</a>
+                        <a href="/genre?genre=Sports&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Sports' + '\';|'">Sports</a>
+                        <a href="/genre?genre=Supernatural&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Supernatural' + '\';|'">Supernatural</a>
+                        <a href="/genre?genre=Xuanhuan&page=1"th:onclick="'|javascript:selectedGenre = \'' + 'Xuanhuan' + '\';|'">Xuanhuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="SearchButton">
+            <form action="/search?page=1" method="get" >
+                <input type="text" name="search" placeholder="Search Novel...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="SpecificBook" id="book-container" data-ratings="${bookData[8]}" data-status="${bookData[10]}" th:each="bookData : ${bookData}">
+        <div class="ImageNdInfo">
+            <div class="images">
+                <img th:src="${bookData[6]}" alt="Book cover">
+            </div>
+            <div class="Info">
+                <div class="titles" th:text="${bookData[1]}"style="font-size: 25px;">
+                    This will contain the title of the light novel
+                </div>
+                <div class="ratings" th:text="${bookData[8]} + '/10' + '   '+  ' (' + ${bookData[9]} + ') ratings' ">
+                    This will contain the rating of the light novel
+                </div>
+                <div class="intro"th:text="${bookData[5]}">
+                    This will contain the intro of the light novel
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="pagination" id="pagination-container">
+        <nav aria-label="Page navigation example">
+            <div class="pagination">
+                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                    <a class="page-link" th:href="@{|/?page=${currentPage-1}|}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <!-- Showing 5 pagination button things more than page ur on -->
+                <th:block th:if="${numPages <= 7}">
+                    <th:block th:each="i : ${#numbers.sequence(1, numPages)}">
+                        <li class="page-item" th:classappend="${currentPage == i} ? 'active'">
+                            <a class="page-link" th:href="@{|/?page=${i}|}" th:text="${i}"></a>
+                        </li>
+                    </th:block>
+                </th:block>
+                <th:block th:if="${numPages > 7}">
+                    <th:block th:if="${currentPage <= 3}">
+                        <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                            <li class="page-item" th:classappend="${currentPage == i} ? 'active' : ''">
+                                <a class="page-link" th:href="@{|/?page=${i}|}" th:text="${i}"></a>
+                            </li>
+                        </th:block>
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/?page=${numPages}|}" th:text="${numPages}"></a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${currentPage > 3 && currentPage <= numPages - 3}">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/?page=1|}">1</a>
+                        </li>
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                        <th:block th:each="i : ${#numbers.sequence(currentPage-2, currentPage+2)}">
+                            <li class="page-item" th:classappend="${currentPage == i} ? 'active' : ''">
+                                <a class="page-link" th:href="@{|/?page=${i}|}" th:text="${i}"></a>
+                            </li>
+                        </th:block>
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/?page=${numPages}|}" th:text="${numPages}"></a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${currentPage > numPages - 3}">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/?page=1|}">1</a>
+                        </li>
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                        <th:block th:each="i : ${#numbers.sequence(numPages-4, numPages)}">
+                            <li class="page-item" th:classappend="${currentPage == i} ? 'active' : ''">
+                                <a class="page-link" th:href="@{|/?page=${i}|}" th:text="${i}"></a>
+                            </li>
+                        </th:block>
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/?page=${numPages}|}" th:text="${numPages}"></a>
+                        </li>
+                    </th:block>
+                </th:block>
+
+            </div>
+
+        </nav>
+    </div>
+</div>
+</body>
+</html>
